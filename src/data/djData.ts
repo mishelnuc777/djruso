@@ -8,6 +8,7 @@ export const djData: DJData = {
   yearsOfExperience: "[AÑOS DE EXPERIENCIA]",
   numberOfEvents: "[NÚMERO DE EVENTOS]",
   heroImage: "https://images.unsplash.com/photo-1571266028243-cb40fce7573b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
+  heroVideo: "/assets/videos/IMG_3623.MP4",
   profileImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
   genres: [
     "House",

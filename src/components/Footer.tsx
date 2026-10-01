@@ -1,64 +1,65 @@
 import { djData } from '../data/djData';
-import { Instagram, Youtube, Music, Headphones, Facebook } from 'lucide-react';
+import { ArrowUp, ArrowUpRight } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
-  const getIcon = (iconName: string) => {
-    switch (iconName.toLowerCase()) {
-      case 'instagram': return <Instagram size={20} />;
-      case 'facebook': return <Facebook size={20} />;
-      case 'youtube': return <Youtube size={20} />;
-      case 'headphones': return <Headphones size={20} />;
-      case 'music': return <Music size={20} />;
-      default: return <Music size={20} />;
-    }
+  const isPlaceholder = (val?: string): boolean => {
+    if (!val) return true;
+    const trimmed = val.trim();
+    return trimmed.startsWith('[') && trimmed.endsWith(']');
+  };
+
+  const artistName = isPlaceholder(djData.artistName) ? 'DJ RUSO' : djData.artistName;
+  const hasRealDescription = !isPlaceholder(djData.shortDescription);
+  const hasPhone = !isPlaceholder(djData.contact.phone);
+  const hasEmail = !isPlaceholder(djData.contact.email);
+  const hasLocation = !isPlaceholder(djData.contact.location);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <footer className="bg-zinc-950 border-t border-zinc-900 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+    <footer className="bg-black text-zinc-400 py-16 border-t border-zinc-900">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-zinc-900 items-start">
           
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <h2 className="text-2xl font-black text-white tracking-tighter uppercase mb-4">
-              {djData.artistName}
-            </h2>
-            <p className="text-zinc-400 text-sm max-w-sm mb-8 leading-relaxed">
-              {djData.shortDescription}
+          {/* Brand Info */}
+          <div className="md:col-span-5 space-y-4">
+            <a href="#home" className="inline-flex items-center gap-1.5 group">
+              <span className="text-2xl font-black tracking-tighter uppercase text-white group-hover:text-zinc-200 transition-colors">
+                {artistName}
+              </span>
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            </a>
+            {hasRealDescription && (
+              <p className="text-zinc-500 text-sm max-w-sm font-normal leading-relaxed">
+                {djData.shortDescription}
+              </p>
+            )}
+            <p className="text-zinc-500 text-xs tracking-wide">
+              Sesiones en directo, formatos exclusivos y producción musical para eventos y festivales.
             </p>
-            <div className="flex gap-4">
-              {djData.socialMedia.map((social, index) => (
-                <a 
-                  key={index}
-                  href={social.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-400 hover:text-white hover:border-blue-500 hover:bg-blue-500/10 transition-all"
-                  aria-label={social.platform}
-                >
-                  {getIcon(social.icon)}
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Enlaces Rápidos</h4>
-            <ul className="space-y-3">
+          <div className="md:col-span-4">
+            <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">
+              Navegación
+            </h4>
+            <ul className="grid grid-cols-2 gap-2 text-xs uppercase tracking-wider font-semibold">
               {[
                 { name: 'Inicio', id: 'home' }, 
-                { name: 'Acerca de', id: 'about' }, 
                 { name: 'Música', id: 'music' }, 
                 { name: 'Galería', id: 'gallery' }, 
-                { name: 'Paquetes', id: 'packages' }
+                { name: 'Paquetes', id: 'packages' },
+                { name: 'Reservar', id: 'contact' }
               ].map((item) => (
                 <li key={item.name}>
                   <a 
-                    href={`#${item.id}`}
-                    className="text-zinc-400 hover:text-white text-sm transition-colors"
+                    href={`#${item.id}`} 
+                    className="text-zinc-400 hover:text-white transition-colors"
                   >
                     {item.name}
                   </a>
@@ -67,26 +68,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h4 className="text-white font-bold mb-6 uppercase tracking-wider text-sm">Contacto</h4>
-            <ul className="space-y-3 text-sm text-zinc-400">
-              <li>{djData.contact.email}</li>
-              <li>{djData.contact.phone}</li>
-              <li>{djData.contact.location}</li>
-            </ul>
+          {/* Booking Contact Quick Info */}
+          <div className="md:col-span-3">
+            <h4 className="text-white text-xs font-bold uppercase tracking-widest mb-4">
+              Booking Directo
+            </h4>
+            {hasEmail || hasPhone || hasLocation ? (
+              <div className="space-y-1.5 text-xs text-zinc-400">
+                {hasEmail && <p className="text-white font-semibold">{djData.contact.email}</p>}
+                {hasPhone && <p>{djData.contact.phone}</p>}
+                {hasLocation && <p className="text-zinc-500 pt-1">{djData.contact.location}</p>}
+              </div>
+            ) : (
+              <div className="space-y-2 text-xs">
+                <p className="text-zinc-500 leading-relaxed">
+                  Líneas de contratación directa en proceso de confirmación.
+                </p>
+                <a 
+                  href="#contact" 
+                  className="inline-flex items-center gap-1.5 text-blue-400 hover:text-blue-300 font-semibold uppercase tracking-wider transition-colors pt-1"
+                >
+                  <span>Solicitar fecha</span>
+                  <ArrowUpRight size={13} />
+                </a>
+              </div>
+            )}
           </div>
 
         </div>
 
-        <div className="border-t border-zinc-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-zinc-600 text-xs">
-            &copy; {currentYear} {djData.artistName}. Todos los derechos reservados.
-          </p>
-          <div className="flex gap-4 text-xs text-zinc-600">
-            <a href="#" className="hover:text-zinc-400 transition-colors">Política de Privacidad</a>
-            <a href="#" className="hover:text-zinc-400 transition-colors">Términos de Servicio</a>
-          </div>
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-600">
+          <p>© {currentYear} {artistName}. Todos los derechos reservados.</p>
+          <button 
+            onClick={scrollToTop}
+            className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors cursor-pointer"
+          >
+            <span>Volver arriba</span>
+            <ArrowUp size={14} />
+          </button>
         </div>
       </div>
     </footer>

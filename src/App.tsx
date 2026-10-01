@@ -3,16 +3,15 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Genres from './components/Genres';
 import MusicSets from './components/MusicSets';
-import Gallery from './components/Gallery';
 import Packages from './components/Packages';
-import Events from './components/Events';
-import Testimonials from './components/Testimonials';
+import Gallery from './components/Gallery';
+import SocialLinks from './components/SocialLinks';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white font-sans selection:bg-blue-500 selection:text-white">
+    <div className="min-h-screen bg-black text-white font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
       <Navbar />
       
       <main>
@@ -20,10 +19,9 @@ export default function App() {
         <About />
         <Genres />
         <MusicSets />
-        <Gallery />
         <Packages />
-        <Events />
-        <Testimonials />
+        <Gallery />
+        <SocialLinks />
         <Contact />
       </main>
 

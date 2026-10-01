@@ -8,31 +8,46 @@ export default function Navbar() {
 
   const navLinks = [
     { name: 'Inicio', href: '#home' },
-    { name: 'Acerca de', href: '#about' },
     { name: 'Música', href: '#music' },
     { name: 'Galería', href: '#gallery' },
     { name: 'Paquetes', href: '#packages' },
-    { name: 'Eventos', href: '#events' },
-    { name: 'Contacto', href: '#contact' },
+    { name: 'Reservar', href: '#contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const isPlaceholder = (val?: string): boolean => {
+    if (!val) return true;
+    const trimmed = val.trim();
+    return trimmed.startsWith('[') && trimmed.endsWith(']');
+  };
+
+  const artistName = isPlaceholder(djData.artistName) ? 'DJ RUSO' : djData.artistName;
+
   return (
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800 py-4' : 'bg-transparent py-6'
+        isScrolled 
+          ? 'bg-black/85 backdrop-blur-xl border-b border-white/10 py-3.5 shadow-2xl' 
+          : 'bg-gradient-to-b from-black/90 via-black/40 to-transparent py-5'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#home" className="text-2xl font-black tracking-tighter uppercase text-white hover:text-blue-400 transition-colors">
-          {djData.artistName}
+        {/* Brand Logo */}
+        <a 
+          href="#home" 
+          className="group flex items-center gap-1.5 focus:outline-none"
+        >
+          <span className="text-xl md:text-2xl font-black tracking-tighter uppercase text-white group-hover:text-zinc-200 transition-colors">
+            {artistName}
+          </span>
+          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 group-hover:scale-125 transition-transform"></span>
         </a>
 
         {/* Desktop Nav */}
@@ -41,14 +56,14 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
-              className="text-sm font-medium text-zinc-300 hover:text-white transition-colors"
+              className="text-xs uppercase tracking-widest font-semibold text-zinc-400 hover:text-white transition-colors duration-200 py-1"
             >
               {link.name}
             </a>
           ))}
           <a 
             href="#contact" 
-            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-full transition-all"
+            className="px-5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_25px_rgba(37,99,235,0.5)]"
           >
             Reservar Ahora
           </a>
@@ -56,21 +71,22 @@ export default function Navbar() {
 
         {/* Mobile Nav Toggle */}
         <button 
-          className="md:hidden text-zinc-300 hover:text-white"
+          className="md:hidden text-zinc-300 hover:text-white p-2 rounded-lg bg-zinc-900/60 border border-zinc-800 focus:outline-none"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Abrir menú de navegación"
         >
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-zinc-950 border-b border-zinc-800 p-6 flex flex-col space-y-4 shadow-2xl">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-black/95 backdrop-blur-2xl border-b border-zinc-800/80 px-6 py-6 flex flex-col space-y-4 shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
           {navLinks.map((link) => (
             <a 
               key={link.name} 
               href={link.href}
-              className="text-lg font-medium text-zinc-300 hover:text-white transition-colors"
+              className="text-sm font-semibold tracking-wider uppercase text-zinc-300 hover:text-white transition-colors py-2 border-b border-zinc-900"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.name}
@@ -78,7 +94,7 @@ export default function Navbar() {
           ))}
           <a 
             href="#contact" 
-            className="block text-center mt-4 px-5 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-all"
+            className="block text-center mt-3 px-5 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg shadow-blue-600/30"
             onClick={() => setMobileMenuOpen(false)}
           >
             Reservar Ahora

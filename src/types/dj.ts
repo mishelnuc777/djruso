@@ -67,6 +67,7 @@ export interface DJData {
   yearsOfExperience: string;
   numberOfEvents: string;
   heroImage: string;
+  heroVideo?: string;
   profileImage: string;
   genres: string[];
   statistics: Statistic[];
