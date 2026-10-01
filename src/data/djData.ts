@@ -25,11 +25,12 @@ export const djData: DJData = {
     { label: "Clientes Satisfechos", value: "100%" }
   ],
   socialMedia: [
-    { platform: "Instagram", url: "[URL DE INSTAGRAM]", icon: "instagram" },
+    { platform: "Instagram", url: "https://www.instagram.com/djbryanacosta/", icon: "instagram" },
+    { platform: "TikTok", url: "https://www.tiktok.com/@djbryanacosta", icon: "video" },
+    { platform: "YouTube", url: "https://www.youtube.com/@djbryanacosta", icon: "youtube" },
     { platform: "Facebook", url: "[URL DE FACEBOOK]", icon: "facebook" },
     { platform: "SoundCloud", url: "[URL DE SOUNDCLOUD]", icon: "music" },
-    { platform: "Spotify", url: "[URL DE SPOTIFY]", icon: "headphones" },
-    { platform: "YouTube", url: "[URL DE YOUTUBE]", icon: "youtube" }
+    { platform: "Spotify", url: "[URL DE SPOTIFY]", icon: "headphones" }
   ],
   contact: {
     email: "[CORREO ELECTRÓNICO]",
