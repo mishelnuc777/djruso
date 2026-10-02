@@ -1,12 +1,14 @@
 import { DJData } from '../types/dj';
 
 export const djData: DJData = {
-  artistName: "[NOMBRE DEL ARTISTA]",
-  slogan: "[ESLOGAN DEL DJ]",
-  shortDescription: "[BREVE DESCRIPCIÓN / SUBTÍTULO]",
-  biography: "[BIOGRAFÍA DEL DJ] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-  yearsOfExperience: "[AÑOS DE EXPERIENCIA]",
-  numberOfEvents: "[NÚMERO DE EVENTOS]",
+  artistName: "DJ Ruso",
+  stageName: "Bryan Acosta",
+  realName: "Bryan David Acosta Molina",
+  tagline: "DJ de DJs",
+  slogan: "Desde la última loma de Caspigasi",
+  shortDescription: "Propuesta musical versátil para todo tipo de eventos: reguetón, música electrónica y diversos géneros, con sets dinámicos, mezclas y remixes respaldados por más de 18 años de trayectoria.",
+  biography: "Bryan David Acosta Molina, conocido artísticamente como Bryan Acosta, es un DJ ecuatoriano con más de 18 años de trayectoria en la industria del entretenimiento. Su energía, técnica y conexión con el público lo han llevado a presentarse en eventos, festivales y escenarios de todo Ecuador.\n\nDurante su carrera ha participado en certámenes de DJs organizados por emisoras de Quito y ha sido DJ residente de discotecas de la capital. Con una propuesta musical amplia y versátil, trabaja con reguetón, música electrónica y diferentes géneros, creando sets, mezclas y remixes dinámicos pensados para mantener al público conectado y la pista activa durante todo el evento.\n\nAdemás de su carrera como DJ, dirige su propia empresa de producción de eventos, con servicios y equipamiento para celebraciones privadas, corporativas y producciones musicales.",
+  yearsOfExperience: "Más de 18 años",
   heroImage: "https://images.unsplash.com/photo-1571266028243-cb40fce7573b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80",
   heroVideo: "/assets/videos/IMG_3623.MP4",
   profileImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
@@ -18,12 +20,6 @@ export const djData: DJData = {
     "Latino",
     "Comercial"
   ],
-  statistics: [
-    { label: "Años de Experiencia", value: "[AÑOS]" },
-    { label: "Eventos Realizados", value: "[EVENTOS]" },
-    { label: "Ciudades Visitadas", value: "[CIUDADES]" },
-    { label: "Clientes Satisfechos", value: "100%" }
-  ],
   socialMedia: [
     { platform: "Instagram", url: "https://www.instagram.com/djbryanacosta/", icon: "instagram" },
     { platform: "TikTok", url: "https://www.tiktok.com/@djbryanacosta", icon: "video" },
@@ -33,9 +29,9 @@ export const djData: DJData = {
     { platform: "Spotify", url: "[URL DE SPOTIFY]", icon: "headphones" }
   ],
   contact: {
-    email: "[CORREO ELECTRÓNICO]",
-    phone: "[NÚMERO DE WHATSAPP]",
-    location: "[UBICACIÓN]"
+    email: "djdavidlacost@gmail.com",
+    phone: "+593 99 271 0709",
+    location: "Quito, Ecuador"
   },
   musicSets: [
     {
@@ -77,46 +73,31 @@ export const djData: DJData = {
   packages: [
     {
       id: "pkg-1",
-      name: "PAQUETE BÁSICO",
+      name: "[NOMBRE DEL PAQUETE 1]",
       description: "[DESCRIPCIÓN DEL PAQUETE]",
       price: "[PRECIO]",
-      duration: "Hasta 3 horas",
-      guests: "Hasta 50 invitados",
-      includes: [
-        "Presentación de DJ",
-        "Sistema de sonido",
-        "Iluminación básica"
-      ]
+      duration: "[DURACIÓN]",
+      guests: "[CANTIDAD DE INVITADOS]",
+      includes: []
     },
     {
       id: "pkg-2",
-      name: "PAQUETE PREMIUM",
+      name: "[NOMBRE DEL PAQUETE 2]",
       description: "[DESCRIPCIÓN DEL PAQUETE]",
       price: "[PRECIO]",
-      duration: "Hasta 5 horas",
-      guests: "Hasta 150 invitados",
+      duration: "[DURACIÓN]",
+      guests: "[CANTIDAD DE INVITADOS]",
       isPopular: true,
-      includes: [
-        "Presentación de DJ",
-        "Sistema de sonido profesional",
-        "Iluminación profesional",
-        "Efectos especiales (Máquina de humo)"
-      ]
+      includes: []
     },
     {
       id: "pkg-3",
-      name: "PAQUETE VIP",
+      name: "[NOMBRE DEL PAQUETE 3]",
       description: "[DESCRIPCIÓN DEL PAQUETE]",
       price: "[PRECIO]",
-      duration: "Ilimitada",
-      guests: "150+ invitados",
-      includes: [
-        "Presentación de DJ",
-        "Sistema de sonido premium",
-        "Show de iluminación avanzado",
-        "Efectos especiales (Chispas frías, Humo)",
-        "Experiencia personalizada"
-      ]
+      duration: "[DURACIÓN]",
+      guests: "[CANTIDAD DE INVITADOS]",
+      includes: []
     }
   ],
   events: [

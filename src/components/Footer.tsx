@@ -75,8 +75,24 @@ export default function Footer() {
             </h4>
             {hasEmail || hasPhone || hasLocation ? (
               <div className="space-y-1.5 text-xs text-zinc-400">
-                {hasEmail && <p className="text-white font-semibold">{djData.contact.email}</p>}
-                {hasPhone && <p>{djData.contact.phone}</p>}
+                {hasEmail && (
+                  <a 
+                    href={`mailto:${djData.contact.email}`} 
+                    className="text-white font-semibold hover:text-blue-400 transition-colors block"
+                  >
+                    {djData.contact.email}
+                  </a>
+                )}
+                {hasPhone && (
+                  <a 
+                    href="https://wa.me/593992710709" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="hover:text-emerald-400 transition-colors block"
+                  >
+                    {djData.contact.phone}
+                  </a>
+                )}
                 {hasLocation && <p className="text-zinc-500 pt-1">{djData.contact.location}</p>}
               </div>
             ) : (

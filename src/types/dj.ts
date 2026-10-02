@@ -36,12 +36,12 @@ export interface Event {
 
 export interface Package {
   id: string;
-  name: string;
-  description: string;
-  price: string;
-  duration: string;
-  guests: string;
-  includes: string[];
+  name?: string;
+  description?: string;
+  price?: string;
+  duration?: string;
+  guests?: string;
+  includes?: string[];
   isPopular?: boolean;
 }
 
@@ -61,16 +61,19 @@ export interface GalleryImage {
 
 export interface DJData {
   artistName: string;
+  stageName?: string;
+  realName?: string;
+  tagline?: string;
   slogan: string;
   shortDescription: string;
   biography: string;
-  yearsOfExperience: string;
-  numberOfEvents: string;
+  yearsOfExperience?: string;
+  numberOfEvents?: string;
   heroImage: string;
   heroVideo?: string;
   profileImage: string;
   genres: string[];
-  statistics: Statistic[];
+  statistics?: Statistic[];
   socialMedia: SocialMedia[];
   contact: ContactInfo;
   musicSets: MusicSet[];

@@ -59,9 +59,11 @@ export default function Hero() {
   };
 
   const artistName = isPlaceholder(djData.artistName) ? 'DJ RUSO' : djData.artistName;
-  const displaySlogan = isPlaceholder(djData.slogan) ? 'DJ en Quito • Booking Oficial' : djData.slogan;
+  const displaySlogan = isPlaceholder(djData.slogan) ? 'Desde la última loma de Caspigasi' : djData.slogan;
+  const displayTagline = djData.tagline || 'DJ de DJs';
+  const stageName = djData.stageName || 'Bryan Acosta';
   const displayDescription = isPlaceholder(djData.shortDescription)
-    ? 'Música en vivo, mezclas profesionales y producción sonora para eventos privados, bodas y clubes en Quito.'
+    ? 'Propuesta musical versátil para todo tipo de eventos: reguetón, música electrónica y diversos géneros, con sets dinámicos, mezclas y remixes.'
     : djData.shortDescription;
 
   return (
@@ -132,30 +134,47 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 w-full pt-28 pb-20 md:py-24">
         <div className="max-w-3xl">
           
-          {/* Slogan & Live Status Pill */}
+          {/* Identity Phrase & Origin Pill */}
           <motion.div 
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.15 }}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-950/70 border border-zinc-800/80 backdrop-blur-md mb-6 w-fit"
+            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-zinc-950/80 border border-zinc-800/90 backdrop-blur-md mb-5 w-fit shadow-lg shadow-black/50"
           >
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <span className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.25em] text-zinc-300">
-              {displaySlogan}
+            <span className="text-[11px] sm:text-xs font-semibold tracking-[0.2em] text-zinc-300">
+              «{displaySlogan.replace(/^«|»$/g, '')}»
+            </span>
+          </motion.div>
+
+          {/* Distinctive Phrase: DJ de DJs & Artist Name */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65, delay: 0.2 }}
+            className="flex items-center gap-3 mb-3"
+          >
+            <span className="w-6 h-[1.5px] bg-blue-500"></span>
+            <span className="text-blue-400 font-extrabold tracking-[0.28em] uppercase text-xs sm:text-sm">
+              {displayTagline}
+            </span>
+            <span className="text-zinc-600 text-xs">•</span>
+            <span className="text-zinc-400 text-xs sm:text-sm font-semibold tracking-wider">
+              {stageName}
             </span>
           </motion.div>
           
-          {/* Monumental DJ Name */}
+          {/* Monumental Brand Title */}
           <motion.h1 
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.25 }}
+            transition={{ duration: 0.7, delay: 0.26 }}
             className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black text-white tracking-tighter uppercase leading-[0.88] mb-6 select-none drop-shadow-2xl break-words"
           >
             {artistName}
           </motion.h1>
           
-          {/* Short Description */}
+          {/* Versatile Music Short Description */}
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

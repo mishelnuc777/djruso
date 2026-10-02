@@ -6,20 +6,18 @@ export default function About() {
   const isPlaceholder = (val?: string): boolean => {
     if (!val) return true;
     const trimmed = val.trim();
-    return trimmed.startsWith('[') && trimmed.endsWith(']');
+    return (
+      (trimmed.startsWith('[') && trimmed.endsWith(']')) ||
+      trimmed.toLowerCase().includes('lorem ipsum') ||
+      trimmed.toLowerCase().startsWith('[biografía') ||
+      trimmed.length === 0
+    );
   };
 
   const artistName = isPlaceholder(djData.artistName) ? 'DJ RUSO' : djData.artistName;
   const hasRealDescription = !isPlaceholder(djData.shortDescription);
-  const biographyText = djData.biography.replace(/^\[BIOGRAFÍA DEL DJ\]\s*/i, '');
-
-  // Filter out any placeholder stats (e.g. "[AÑOS]", "[EVENTOS]") or unconfirmed figures
-  const confirmedStats = djData.statistics.filter(stat => {
-    const val = stat.value.trim();
-    const isStatPlaceholder = val.startsWith('[') && val.endsWith(']');
-    const isUnverified = val === '100%'; // Do not display unverified claims until confirmed
-    return !isStatPlaceholder && !isUnverified;
-  });
+  const hasValidBiography = !isPlaceholder(djData.biography);
+  const biographyText = hasValidBiography ? djData.biography.replace(/^\[BIOGRAFÍA DEL DJ\]\s*/i, '').trim() : '';
 
   return (
     <section id="about" className="py-24 md:py-32 bg-zinc-950 relative border-t border-zinc-900 overflow-hidden">
@@ -57,11 +55,16 @@ export default function About() {
                 <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between pointer-events-none">
                   <div>
                     <span className="text-[10px] uppercase tracking-[0.25em] text-blue-400 font-bold block">
-                      En Cabina
+                      En Cabina • {djData.tagline || 'DJ de DJs'}
                     </span>
                     <span className="text-white text-base font-black tracking-tight uppercase">
                       {artistName}
                     </span>
+                    {djData.stageName && (
+                      <span className="text-zinc-400 text-xs tracking-wider block font-medium">
+                        {djData.stageName}
+                      </span>
+                    )}
                   </div>
                   <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
                 </div>
@@ -83,10 +86,14 @@ export default function About() {
             className="lg:col-span-7 flex flex-col justify-center"
           >
             {/* Section Tag */}
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mb-4">
               <span className="w-6 h-[1px] bg-blue-500"></span>
               <span className="text-blue-400 font-semibold tracking-[0.25em] uppercase text-xs">
                 Perfil & Trayectoria
+              </span>
+              <span className="text-zinc-600 text-xs hidden sm:inline">•</span>
+              <span className="text-zinc-400 font-medium tracking-wide text-xs">
+                «Desde la última loma de Caspigasi»
               </span>
             </div>
 
@@ -104,23 +111,11 @@ export default function About() {
               </div>
             )}
 
-            {/* Full Biography */}
-            <div className="text-zinc-400 text-sm sm:text-base font-light leading-relaxed mb-8">
-              <p>{biographyText}</p>
-            </div>
-
-            {/* Confirmed Statistics (Cleanly rendered only if real confirmed data exists) */}
-            {confirmedStats.length > 0 && (
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 mb-8 border-t border-zinc-900">
-                {confirmedStats.map((stat, index) => (
-                  <div key={index} className="flex flex-col border-l border-zinc-800/80 pl-4">
-                    <span className="text-2xl sm:text-3xl font-black text-white mb-1 tracking-tight">
-                      {stat.value}
-                    </span>
-                    <span className="text-[11px] text-zinc-500 uppercase tracking-widest font-semibold">
-                      {stat.label}
-                    </span>
-                  </div>
+            {/* Full Biography (hidden when provisional or empty) */}
+            {hasValidBiography && (
+              <div className="text-zinc-400 text-sm sm:text-base font-light leading-relaxed mb-8 space-y-4">
+                {biographyText.split('\n\n').map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
                 ))}
               </div>
             )}

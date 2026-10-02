@@ -167,9 +167,16 @@ export default function Contact() {
                     </div>
                     <div>
                       <span className="text-[11px] text-zinc-500 uppercase tracking-widest font-semibold block mb-0.5">
-                        Teléfono Directo
+                        WhatsApp / Teléfono Directo
                       </span>
-                      <p className="text-white font-bold text-sm sm:text-base tracking-wide">{djData.contact.phone}</p>
+                      <a 
+                        href={`https://wa.me/${rawPhoneDigits}?text=${defaultWhatsAppText}`} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-white font-bold text-sm sm:text-base tracking-wide hover:text-emerald-400 transition-colors"
+                      >
+                        {djData.contact.phone}
+                      </a>
                     </div>
                   </div>
                 )}
@@ -183,7 +190,12 @@ export default function Contact() {
                       <span className="text-[11px] text-zinc-500 uppercase tracking-widest font-semibold block mb-0.5">
                         Correo de Booking
                       </span>
-                      <p className="text-white font-bold text-sm sm:text-base">{djData.contact.email}</p>
+                      <a 
+                        href={`mailto:${djData.contact.email}?subject=${encodeURIComponent('Consulta de Booking - DJ Ruso')}`}
+                        className="text-white font-bold text-sm sm:text-base hover:text-blue-400 transition-colors"
+                      >
+                        {djData.contact.email}
+                      </a>
                     </div>
                   </div>
                 )}
